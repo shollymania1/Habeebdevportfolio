@@ -658,13 +658,29 @@ img {
 }
 
 @media (max-width: 800px) {
-    .hero-inner, .about-grid, .services-grid, .contact-box {
+    .hero-inner,
+    .about-creative-wrap,
+    .contact-box,
+    .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        flex-basis: min(78vw, 290px);
     }
 
     .main-nav {
         gap: 0.85rem;
         font-size: 0.8rem;
+    }
+
+    .copyright {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
@@ -685,8 +701,19 @@ img {
         padding-top: 54px;
     }
 
-    .footer-inner {
-        flex-direction: column;
-        text-align: center;
+    .hero-copy h1 {
+        font-size: clamp(2.2rem, 11vw, 3.2rem);
+    }
+
+    .feature-item {
+        padding: 0.85rem;
+    }
+
+    .service-card {
+        flex-basis: 80vw;
+    }
+
+    .site-footer {
+        padding-top: 2.4rem;
     }
 }
