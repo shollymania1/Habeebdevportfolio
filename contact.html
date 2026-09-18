@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me | Habeeb Dev</title>
+    <style>
+        :root {
+            --bg: #08111f;
+            --panel: #12233d;
+            --panel-2: #0d182a;
+            --line: rgba(255,255,255,0.08);
+            --text: #edf4ff;
+            --muted: #a9b7cc;
+            --accent: #4ea0ff;
+            --accent-2: #8d7dff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #08111f 0%, #0d182a 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: min(1000px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(8,17,31,0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-wrap-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.2);
+        }
+
+        .brand {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        .brand span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            color: var(--muted);
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        .page {
+            padding: 70px 0 90px;
+        }
+
+        .contact-shell {
+            background: rgba(18, 35, 61, 0.9);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+
+        .info-side {
+            background: linear-gradient(180deg, rgba(78,160,255,0.14), rgba(141,125,255,0.08));
+            padding: 2.2rem;
+            border-right: 1px solid var(--line);
+        }
+
+        .eyebrow {
+            margin: 0 0 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.14em;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 0.8rem;
+            font-size: clamp(2.1rem, 4vw, 3.4rem);
+            line-height: 1.1;
+        }
+
+        .info-side p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .contact-list {
+            margin-top: 2rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            padding: 0.9rem 1rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-item span {
+            color: var(--muted);
+            font-size: 0.94rem;
+        }
+
+        .contact-socials {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-top: 1.2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.7rem 0.9rem;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+            color: var(--text);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .social-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+            flex-shrink: 0;
+        }
+
+        .social-btn svg {
+            width: 22px;
+            height: 22px;
+            display: block;
+        }
+
+        .social-btn.whatsapp { background: #25D366; }
+        .social-btn.telegram { background: #229ED9; }
+        .social-btn.email { background: #4ea0ff; }
+        .social-btn.phone { background: #ff8c42; }
+
+        .form-side {
+            padding: 2.2rem;
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: rgba(8,17,31,0.8);
+            color: var(--text);
+            font: inherit;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #9aaac0;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 1rem 1.3rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 760px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .info-side {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a href="index.html" class="brand-wrap-link">
+                <img class="brand-logo" src="https://shollymania0.wordpress.com/wp-content/uploads/2026/08/sholly-logo-1.png" alt="Sholly logo">
+                <span class="brand">Habeeb <span>Dev</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="work.html">View My Work</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container contact-shell">
+            <div class="contact-layout">
+                <aside class="info-side">
+                    <div class="eyebrow">Contact</div>
+                    <h1>Send a message.</h1>
+
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <strong>Quick Contact</strong>
+                            <span>Choose your preferred way to reach me.</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <a class="contact-link whatsapp" href="https://wa.me/2349163595597" target="_blank" rel="noopener" aria-label="Click here to send me a message on WhatsApp">
+                            <span class="social-btn whatsapp">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path fill="currentColor" d="M20.52 3.48A11.74 11.74 0 0 0 12 0C5.38 0 .03 5.35.03 11.97c0 2.1.55 4.14 1.58 5.94L0 24l6.3-1.65a11.95 11.95 0 0 0 5.7 1.73h.01c6.62 0 11.97-5.35 11.97-11.97 0-3.2-1.25-6.22-3.46-8.63ZM12 21.9c-1.83 0-3.63-.5-5.2-1.43l-.37-.22-3.74.98 1-3.64-.24-.38A9.92 9.92 0 0 1 2.11 12c0-5.47 4.45-9.92 9.92-9.92A9.9 9.9 0 0 1 21.9 12c0 5.47-4.45 9.92-9.9 9.92Zm5.45-7.42c-.3-.15-1.75-.86-2.02-.96-.27-.1-.46-.15-.65.15-.2.3-.76.96-.94 1.15-.17.2-.35.22-.66.08-.3-.15-1.25-.46-2.39-1.48-.88-.79-1.48-1.77-1.65-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.65-1.57-.9-2.14-.23-.56-.47-.48-.65-.49l-.55-.01c-.2 0-.52.08-.8.38-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.08 1.75-.72 2-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35Z"/>
+                                </svg>
+                            </span>
+                            <span>Click here to message me on WhatsApp</span>
+                        </a>
+
+                        <a class="contact-link telegram" href="https://t.me/shollymania1" target="_blank" rel="noopener" aria-label="Click here to send me a message on Telegram">
+                            <span class="social-btn telegram">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.89 7.23-1.82 8.53c-.13.6-.49.75-1 .47l-2.77-2.04-1.33 1.28c-.15.15-.27.28-.56.28l.2-2.84 5.17-4.66c.23-.2-.05-.31-.35-.11L8.54 13.1l-2.72-.86c-.59-.18-.6-.59.12-.87l10.62-4.1c.5-.18.94.12.78.87Z"/>
+                                </svg>
+                            </span>
+                            <span>Click here to message me on Telegram</span>
+                        </a>
+
+                        <a class="contact-link email" href="mailto:shollymania3@gmail.com" aria-label="Click here to send me a message by email">
+                            <span class="social-btn email">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 5.34L4 8.2V6l8 5.34L20 6v2.2Z"/>
+                                </svg>
+                            </span>
+                            <span>Click here to send me an email</span>
+                        </a>
+
+                        <a class="contact-link phone" href="tel:+2349163595597" aria-label="Click here to call me on phone">
+                            <span class="social-btn phone">📞</span>
+                            <span>Call me now: +234 916 359 5597</span>
+                        </a>
+                    </div>
+                </aside>
+
+                <div class="form-side">
+                    <form id="contactForm" action="https://formspree.io/f/xvkpndww" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <select name="service" required>
+                            <option value="">Select a Service</option>
+                            <option>Business Website</option>
+                            <option>Landing Page</option>
+                            <option>E-Commerce Website</option>
+                            <option>Website Redesign</option>
+                            <option>Real Estate Website</option>
+                            <option>Booking Website</option>
+                            <option>Restaurant Website</option>
+                            <option>Portfolio Website</option>
+                            <option>Personal Brand Website</option>
+                            <option>Rental Website</option>
+                            <option>Property Listing Website</option>
+                        </select>
+                        <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const contactForm = document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const submitButton = contactForm.querySelector("button[type='submit']");
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: "POST",
+                    body: new FormData(contactForm),
+                    headers: {
+                        Accept: "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("form failed");
+                }
+
+                contactForm.reset();
+                submitButton.textContent = "Message Sent";
+                alert("Your message has been sent successfully.");
+            } catch (error) {
+                submitButton.disabled = false;
+                submitButton.textContent = "Send Message";
+                alert("There was a problem sending the message. Please try again or email us directly.");
+            }
+        });
+    </script>
+</body>
+</html>
